@@ -1,0 +1,12 @@
+{% for message in get_flashed_messages() %}
+
+<h4>{{ message }}</h4>
+{% endfor %}
+<form action="" method="POST">
+  <p>BookId <input type="integer" name="book_id" value="{{book.BookId}}" /></p>
+  <p>
+    BookName <input type="text" name="bookname" value="{{book.BookName}}" />
+  </p>
+  <p>Total <input type="integer" name="total" value="{{book.total}}" /></p>
+  <p><input type="submit" value="Submit" /></p>
+</form>

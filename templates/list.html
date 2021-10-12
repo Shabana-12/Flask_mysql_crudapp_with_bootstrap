@@ -1,0 +1,7 @@
+{% for message in get_flashed_messages() %}
+
+<h4>{{ message }}</h4>
+{% endfor %} 
+{% for book in books %}
+<h3>{{book}}</h3><hr>
+{% endfor %}
