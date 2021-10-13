@@ -32,15 +32,22 @@ def create():
         book_id = request.form['book_id']
         bookname = request.form['bookname']
         total = request.form['total']
+        
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("INSERT INTO books(BookId,BookName, total) VALUES(%s, %s,%s)",
+        cursor.execute('SELECT * FROM books WHERE BookId = %s', (book_id,))
+        id = cursor.fetchone()
+        if id:
+            flash("This Id book is already Exist in Library")
+            return redirect(url_for('retrieve'))
+        else:    
+            cursor.execute("INSERT INTO books(BookId,BookName, total) VALUES(%s, %s,%s)",
                            (book_id,bookname,total))
-        mysql.connection.commit()
-        flash("You have successfully added books in library")
-        return redirect(url_for('retrieve'))
+            mysql.connection.commit()
+            flash("You have successfully added books in library")
+            return redirect(url_for('retrieve'))
 
 @app.route('/detail/<id>', methods = ['POST', 'GET'])
-def get_employee(id):
+def detail(id):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('SELECT * FROM books WHERE BookId = %s', (id,))
     data = cursor.fetchall()
@@ -71,7 +78,7 @@ def update(id):
     return render_template('update.html', book = book)
 
 @app.route('/delete/<id>', methods = ['POST','GET'])
-def delete_employee(id):
+def delete(id):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('select * FROM books WHERE BookId = {0}'.format(id))
     book=cursor.fetchall()
