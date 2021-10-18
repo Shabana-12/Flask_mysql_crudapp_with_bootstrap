@@ -17,39 +17,43 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     {% for message in get_flashed_messages() %}
-
-    <h4>{{ message }}</h4>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong> You should check in on some of those fields below.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <!-- <h4>{{ message }}</h4> -->
     {% endfor %} 
-    <!-- {% for book in books %}
-    <h3>{{book}}</h3><hr>
-    {% endfor %} -->
-
-    <table class="table table-hover table-dark">
+    
+    <table class="table table-success table-striped">
+      
  
         <tr>
 
-            <th>BookID</th>
-            <th>BookName</th>
-            <th>Total</th>
-            <th>Action</th>
-            <th> <a href="/create" class="btn btn-success" data-toggle="modal" >Add Books</a></th>
+            <th>EmployeeId</th>
+            <th>EmployeeName</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Salary</th>
+            <th>Action / <a href="/create" class="btn btn-success" data-toggle="modal" >Add Employee</a> </th>
+          
            
 
         </tr>
 
 
-       {% for row in books %}
+       {% for row in employee %}
         <tr>
-            <td>{{row.BookId}}</td>
-            <td>{{row.BookName}}</td>
-            <td>{{row.total}}</td>
-            
+            <td>{{row.id}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.age}}</td>
+            <td>{{row.address}}</td>
+            <td>{{row.salary}}</td>
 
             <td>
-                <a href="/detail/{{row.BookId}}" class="btn btn-info" data-toggle="modal" data-target="#modaledit{{row.BookId}}">Info</a>
+                <a href="/detail/{{row.id}}" class="btn btn-info" data-toggle="modal" data-target="#modaledit{{row.id}}">Info</a>
 
-                <a href="/update/{{row.BookId}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.BookId}}">Edit</a>
-                <a href="/delete/{{row.BookId}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+                <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit</a>
+                <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
 
 
             </td>

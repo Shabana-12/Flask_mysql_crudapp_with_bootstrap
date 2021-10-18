@@ -10,18 +10,18 @@ app.secret_key = 'your secret key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'pass@1New'
-app.config['MYSQL_DB'] = 'librarysys'
+app.config['MYSQL_DB'] = 'mypracticedatabase'
 mysql = MySQL(app)
 
 @app.route('/')
-def retrieve():
+def Index():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
  
-    cursor.execute('SELECT * FROM books')
+    cursor.execute('SELECT * FROM employee')
     data = cursor.fetchall()
   
     
-    return render_template('list.html', books= data)
+    return render_template('list.html', employee= data)
 
 @app.route('/create' , methods = ['GET','POST'])
 def create():
@@ -29,71 +29,59 @@ def create():
         return render_template('create.html')
  
     if request.method == 'POST':
-        book_id = request.form['book_id']
-        bookname = request.form['bookname']
-        total = request.form['total']
-        
+        # id = request.form['id']
+        name = request.form['name']
+        age = request.form['age']
+        address = request.form['address']
+        salary = request.form['salary']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM books WHERE BookId = %s', (book_id,))
-        id = cursor.fetchone()
-        if id:
-            flash("This Id book is already Exist in Library")
-            return redirect(url_for('retrieve'))
-        else:    
-            cursor.execute("INSERT INTO books(BookId,BookName, total) VALUES(%s, %s,%s)",
-                           (book_id,bookname,total))
-            mysql.connection.commit()
-            flash("You have successfully added books in library")
-            return redirect(url_for('retrieve'))
+        
+        cursor.execute("INSERT INTO employee(name,age,address,salary) VALUES(%s, %s,%s,%s)",
+                           (name,age,address,salary))
+        mysql.connection.commit()
+        flash("You have successfully added Employee in the list")
+        return redirect(url_for('Index'))
 
 @app.route('/detail/<id>', methods = ['POST', 'GET'])
 def detail(id):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('SELECT * FROM books WHERE BookId = %s', (id,))
+    cursor.execute('SELECT * FROM employee WHERE id = %s', (id,))
     data = cursor.fetchall()
     
     
-    return render_template('detail.html', book= data[0])
+    return render_template('detail.html', employee= data[0])
   
 @app.route('/update/<id>',methods = ['GET','POST'])
 def update(id):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('SELECT * FROM books WHERE BookId = %s', (id,))
-    book = cursor.fetchone()
+    cursor.execute('SELECT * FROM employee WHERE id = %s', (id,))
+    data = cursor.fetchone()
     if request.method == 'POST':
-        if book:
-            
-            book_id = request.form['book_id']
-            bookname = request.form['bookname']
-            total = request.form['total']
-        
-            cursor.execute("""UPDATE books SET BookName = %s,total= %s WHERE BookId = %s""", (bookname,total,book_id))
+        if data:
+           
+            name = request.form['name']
+            age = request.form['age']
+            address = request.form['address']
+            salary = request.form['salary']
+            cursor.execute("""UPDATE employee SET name = %s,age= %s ,address=%s ,salary=%s WHERE id = %s""", (name,age,address,salary,id,))
             mysql.connection.commit()
-            flash("Book details updated successfully")
-            return redirect(url_for('retrieve'))
-        else:
-            flash("Book details are not available which you are trying to update")
-            return redirect(url_for('create'))
+            flash("Employee details updated successfully")
+            return redirect(url_for('Index'))
+        
  
-    return render_template('update.html', book = book)
+    return render_template('update.html', employee = data)
 
-@app.route('/delete/<id>', methods = ['POST','GET'])
+@app.route('/delete/<id>', methods = ['GET','POST'])
 def delete(id):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('select * FROM books WHERE BookId = {0}'.format(id))
-    book=cursor.fetchall()
-    if request.method == 'POST':
-        if book:
-        
-            cursor.execute('DELETE FROM books WHERE BookId = {0}'.format(id))
+   
+   
+    cursor.execute("DELETE FROM employee WHERE id=%s", (id,))
     
-            mysql.connection.commit()
-            flash('Book details Removed Successfully')
-            return redirect(url_for('retrieve'))
-        else:
-            flash('Book details are not present which you are trying to delete')
-            return redirect(url_for('retrieve'))
-    return render_template("delete.html")
+    mysql.connection.commit()
+    flash('Employee details Removed Successfully')
+    return redirect(url_for('Index'))
+       
         
 
 if __name__ == "__main__":

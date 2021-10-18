@@ -29,27 +29,24 @@
 
     <h4>{{ message }}</h4>
     {% endfor %}
-    <!-- <form action="" method="POST">
-      <br />
-      <p>Book ID <input type="integer" name="book_id"  placeholder="BookId" autocomplete="off" require/></p>
-      <p>BookName <input type="text" name="bookname"  placeholder="Enter Bookname" autocomplete="off" require/></p>
-      <p>Total book copies <input type="integer" placeholder="Enter total books" autocomplete="off" require name="total" /></p>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form> -->
+  
 
     <form action="" method="POST" class="row g-3">
-      <div class="col-md-6">
-        <label for="book_id" class="form-label">BookId</label>
-        <input type="number" name="book_id" class="form-control" id="BookId" placeholder="BookId" autocomplete="off" required />
-        <label for="booname" class="form-label">BookName</label>
-        <input type="text" name="bookname" class="form-control" id="Bookname" placeholder="BookName" autocomplete="off" required />
-        <label for="total" class="form-label">Total</label>
-        <input type="number" name="total" class="form-control" id="total" placeholder="total" autocomplete="off" required />
-        <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
+      
 
+      <div class="col-md-6">
+        <label for="name" class="form-label">EmployeeName</label>
+        <input type="text" name="name" class="form-control"placeholder="Enter Employee name" autocomplete="off" required  />
+        <label for="age" class="form-label">Age</label>
+        <input type="number" name="age" class="form-control" placeholder="Enter employee age" autocomplete="off" required />
+        <label for="address" class="form-label">Address</label>
+        <input type="text" name="address" class="form-control"placeholder="Enter employee address" autocomplete="off" required  />
+        <label for="salary" class="form-label">Salary</label>
+        <input type="number" name="salary" class="form-control"placeholder="Enter employee salary" autocomplete="off" required />
+        <br>
+        <button type="submit" class="btn btn-primary">Create</button>
+        
+      </div>
       
     </form>
     <!-- Option 2: Separate Popper and Bootstrap JS -->

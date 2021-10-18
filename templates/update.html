@@ -28,26 +28,19 @@
 
     <h4>{{ message }}</h4>
     {% endfor %}
-    <!-- <form action="" method="POST">
-      <p>
-        BookId <input type="integer" name="book_id" value="{{book.BookId}}" />
-      </p>
-      <p>
-        BookName <input type="text" name="bookname" value="{{book.BookName}}" />
-      </p>
-      <p>Total <input type="integer" name="total" value="{{book.total}}" /></p>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form> -->
+   
 
 
     <form action="" method="POST" class="row g-3">
       <div class="col-md-6">
-        <label for="book_id" class="form-label">BookId</label>
-        <input type="number" name="book_id" class="form-control"value="{{book.BookId}}"  />
-        <label for="booname" class="form-label">BookName</label>
-        <input type="text" name="bookname" class="form-control" value="{{book.BookName}}" />
-        <label for="total" class="form-label">BookId</label>
-        <input type="number" name="total" class="form-control"value="{{book.total}}" />
+        <label for="name" class="form-label">EmployeeName</label>
+        <input type="text" name="name" class="form-control"value="{{employee.name}}"  />
+        <label for="age" class="form-label">Age</label>
+        <input type="number" name="age" class="form-control" value="{{employee.age}}" />
+        <label for="address" class="form-label">Address</label>
+        <input type="text" name="address" class="form-control"value="{{employee.address}}" />
+        <label for="salary" class="form-label">Salary</label>
+        <input type="number" name="salary" class="form-control"value="{{employee.salary}}" />
         <br>
         <button type="submit" class="btn btn-primary">Update</button>
         
