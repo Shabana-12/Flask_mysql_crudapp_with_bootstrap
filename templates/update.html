@@ -24,13 +24,7 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    {% for message in get_flashed_messages() %}
-
-    <h4>{{ message }}</h4>
-    {% endfor %}
    
-
-
     <form action="" method="POST" class="row g-3">
       <div class="col-md-6">
         <label for="name" class="form-label">EmployeeName</label>
@@ -41,6 +35,33 @@
         <input type="text" name="address" class="form-control"value="{{employee.address}}" />
         <label for="salary" class="form-label">Salary</label>
         <input type="number" name="salary" class="form-control"value="{{employee.salary}}" />
+        <br>
+        <select class="form-select form-select-lg mb-3"name='gender'value="{{employee.gender}}" aria-label=".form-select-lg example">
+          <option selected>Gender</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Other">Other</option>
+        </select>
+        <br>
+        Employee Type
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="etype" value="permanant" id="permanant"checked>
+          <label class="form-check-label" for="permanant">
+            Permanant Employee
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="etype" value="temporary" id="temporary" checked>
+          <label class="form-check-label" for="temporary">
+            Temporary Employee
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="etype" value="intern" id="intern" checked>
+          <label class="form-check-label" for="intern">
+            Intern
+          </label>
+        </div>
         <br>
         <button type="submit" class="btn btn-primary">Update</button>
         

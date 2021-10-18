@@ -29,7 +29,6 @@
 
     <h4>{{ message }}</h4>
     {% endfor %}
-  
 
     <form action="" method="POST" class="row g-3">
       
@@ -44,11 +43,48 @@
         <label for="salary" class="form-label">Salary</label>
         <input type="number" name="salary" class="form-control"placeholder="Enter employee salary" autocomplete="off" required />
         <br>
+        <select name='gender'
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+        >
+          <option selected>Gender</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="other">Other</option>
+        </select> 
+        <br>
+        Employee Type
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="etype" value="permanant" id="permanant">
+          <label class="form-check-label" for="permanant">
+            Permanant Employee
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="etype" value="temporary" id="temporary" checked>
+          <label class="form-check-label" for="temporary">
+            Temporary Employee
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="etype"value="intern" id="intern" checked>
+          <label class="form-check-label" for="intern">
+            Intern
+          </label>
+        </div> 
+        <br>
         <button type="submit" class="btn btn-primary">Create</button>
         
       </div>
       
     </form>
+
+         
+         
+        <!-- <br />
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form> -->
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

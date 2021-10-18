@@ -34,6 +34,8 @@
             <th>Age</th>
             <th>Address</th>
             <th>Salary</th>
+            <th>Gender</th>
+            <th>Employee Type</th>
             <th>Action / <a href="/create" class="btn btn-success" data-toggle="modal" >Add Employee</a> </th>
           
            
@@ -48,6 +50,8 @@
             <td>{{row.age}}</td>
             <td>{{row.address}}</td>
             <td>{{row.salary}}</td>
+            <td>{{row.gender}}</td>
+            <td>{{row.type}}</td>
 
             <td>
                 <a href="/detail/{{row.id}}" class="btn btn-info" data-toggle="modal" data-target="#modaledit{{row.id}}">Info</a>
